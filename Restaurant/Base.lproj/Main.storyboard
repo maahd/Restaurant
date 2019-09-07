@@ -212,11 +212,64 @@
                             <outlet property="delegate" destination="MIk-Yj-OMe" id="hcf-Vv-xP0"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Root View Controller" id="w8n-3o-qMl"/>
+                    <navigationItem key="navigationItem" title="Root View Controller" id="w8n-3o-qMl">
+                        <barButtonItem key="rightBarButtonItem" title="Submit" id="hCn-nd-c8p">
+                            <connections>
+                                <action selector="submitButtonTapped:" destination="MIk-Yj-OMe" id="xPF-8o-ATR"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <segue destination="egH-QW-QEb" kind="presentation" identifier="ConfirmationSegue" id="koa-k1-815"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3In-Wa-kcg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1452.1739130434785" y="831.69642857142856"/>
+            <point key="canvasLocation" x="1446" y="832"/>
+        </scene>
+        <!--Order Confirmation View Controller-->
+        <scene sceneID="Mk9-Fh-DGq">
+            <objects>
+                <viewController id="egH-QW-QEb" customClass="OrderConfirmationViewController" customModule="Restaurant" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="vHm-y2-8Nn">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="46" translatesAutoresizingMaskIntoConstraints="NO" id="H4n-Tz-3Hc">
+                                <rect key="frame" x="20" y="400" width="374" height="96.5"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E7N-Ns-eTk">
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T6b-Ux-Ehz">
+                                        <rect key="frame" x="0.0" y="66.5" width="374" height="30"/>
+                                        <state key="normal" title="Dismiss"/>
+                                        <connections>
+                                            <segue destination="5bX-U1-QJa" kind="unwind" identifier="DismissConfirmation" unwindAction="unwindToOrderListWithSegue:" id="H0m-Ik-J1k"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="H4n-Tz-3Hc" firstAttribute="centerY" secondItem="vHm-y2-8Nn" secondAttribute="centerY" id="aJd-ky-yab"/>
+                            <constraint firstItem="H4n-Tz-3Hc" firstAttribute="leading" secondItem="Of8-f9-g4Q" secondAttribute="leading" constant="20" id="qcL-h7-xA0"/>
+                            <constraint firstItem="Of8-f9-g4Q" firstAttribute="trailing" secondItem="H4n-Tz-3Hc" secondAttribute="trailing" constant="20" id="rdU-Rq-scN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Of8-f9-g4Q"/>
+                    </view>
+                    <connections>
+                        <outlet property="timeRemainingLabel" destination="E7N-Ns-eTk" id="0K2-Wc-0TN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Idv-Ee-vvz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="5bX-U1-QJa" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2290" y="832"/>
         </scene>
         <!--Your Order-->
         <scene sceneID="BBw-3y-gFp">
@@ -233,7 +286,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MKD-Wn-XNU" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="534.78260869565224" y="831.69642857142856"/>
+            <point key="canvasLocation" x="529" y="832"/>
         </scene>
         <!--Menu-->
         <scene sceneID="xKF-T7-89z">
@@ -258,6 +311,7 @@
                 <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="E11-f6-JcB" sceneMemberID="viewController">
                     <toolbarItems/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Nlb-D9-4Xw">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
