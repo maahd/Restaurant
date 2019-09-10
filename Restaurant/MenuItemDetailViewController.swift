@@ -9,6 +9,7 @@
 import UIKit
 
 class MenuItemDetailViewController: UIViewController {
+    var menuItem: MenuItem?
     
     @IBOutlet var titleLabel: UILabel!
     @IBOutlet var imageView: UIImageView!
@@ -17,14 +18,15 @@ class MenuItemDetailViewController: UIViewController {
     @IBOutlet var addToOrderButton: UIButton!
     
     @IBAction func addToOrderButtonTapped(_ sender: UIButton) {
+        guard let menuItem = menuItem else { return }
+        
         UIView.animate(withDuration: 0.3) {
-            self.addToOrderButton.transform = CGAffineTransform(scaleX: 3, y: 3)
+            self.addToOrderButton.transform = CGAffineTransform(scaleX: 3.0, y: 3.0)
             self.addToOrderButton.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
         }
+        
         MenuController.shared.order.menuItems.append(menuItem)
     }
-    
-    var menuItem: MenuItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +36,8 @@ class MenuItemDetailViewController: UIViewController {
     }
     
     func updateUI() {
+        guard let menuItem = menuItem else { return }
+        
         titleLabel.text = menuItem.name
         priceLabel.text = String(format: "$%.2f", menuItem.price)
         detailTextLabel.text = menuItem.detailText
@@ -43,5 +47,21 @@ class MenuItemDetailViewController: UIViewController {
                 self.imageView.image = image
             }
         }
+    }
+    
+    override func encodeRestorableState(with coder: NSCoder) {
+        super.encodeRestorableState(with: coder)
+        
+        guard let menuItem = menuItem else { return }
+        
+        coder.encode(menuItem.id, forKey: "menuItemId")
+    }
+    
+    override func decodeRestorableState(with coder: NSCoder) {
+        super.decodeRestorableState(with: coder)
+        
+        let menuItemID = Int(coder.decodeInt32(forKey: "menuItemId"))
+        menuItem = MenuController.shared.item(withID: menuItemID)!
+        updateUI()
     }
 }
